@@ -18,6 +18,7 @@ const config: Config = {
           custom1: '#483698',
           custom2: '#470A68',
           custom3: '#6D2077',
+          custom4: '#343481',
         },
         green: {
           custom1: '#007E7D',
@@ -25,8 +26,14 @@ const config: Config = {
           custom3: '#43B02A',
         },
         pink: { custom1: '#C6007E' },
-        black: { custom1: '#333D49' },
-        gray: { custom1: '#F8F9FD' },
+        black: {
+          custom1: '#333D49',
+          custom2: '#000000',
+        },
+        gray: {
+          custom1: '#F8F9FD',
+          custom2: '#888888',
+        },
         orange: { custom1: '#F68D2E' },
         white: { custom1: '#F7F7F8' },
       },

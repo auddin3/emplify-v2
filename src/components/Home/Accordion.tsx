@@ -32,7 +32,7 @@ const Accordion = () => (
     </div>
     <Grid templateColumns="repeat(3, 1fr)" gap="6" className='my-20'>
       {cardDeck.map((card, idx) => (
-        <GridItem key={idx} className='border border-white-custom1/[0.2] rounded-md p-7 text-left bg-gradient-to-tr from-blue-custom3 to-[#343481]' >
+        <GridItem key={idx} className='border border-white-custom1/[0.2] rounded-md p-7 text-left bg-gradient-to-tl from-blue-custom2 to-purple-custom4 h-full' >
           <Icon className='w-40 h-40 mx-auto text-gray-custom1 mb-2'>
             {card.icon}
           </Icon>

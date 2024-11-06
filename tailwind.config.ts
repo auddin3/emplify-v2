@@ -18,6 +18,7 @@ const config: Config = {
           custom1: '#483698',
           custom2: '#470A68',
           custom3: '#6D2077',
+          custom4: '#343481',
         },
         green: {
           custom1: '#007E7D',

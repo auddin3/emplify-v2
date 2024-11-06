@@ -14,7 +14,7 @@ const Home = () => {
   const clipboard = useClipboard({ value })
 
   return (
-    <div className="bg-gradient-to-r from-blue-custom2 to-[#343481] h-full">
+    <div className="bg-gradient-to-r from-blue-custom2 to-purple-custom4 h-full">
       <div className='flex flex-row justify-between px-4 py-3 border-b border-b-white-custom1/[0.2]'>
         <Image
           src={EmplifyLogo}

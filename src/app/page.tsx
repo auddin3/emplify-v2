@@ -4,20 +4,9 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import EmplifyLogo from '../../public/logo.png'
+import Accordion from '@/components/Home/Accordion'
 import { Button, useClipboard } from '@chakra-ui/react'
-
-const Accordion = () => (
-  <div>
-    <div className='flex flex-row justify-center items-end space-x-4'>
-      <div className='text-3xl font-semibold text-white-custom1'>
-            What&apos;s in Emplify?
-      </div>
-      <div className='text-lg text-gray-custom2'>
-              Everything you need to build a great portfolio.
-      </div>
-    </div>
-  </div>
-)
+import { CheckIcon, DocumentDuplicateIcon } from '@heroicons/react/24/solid'
 
 const Home = () => {
   const router = useRouter()
@@ -25,7 +14,7 @@ const Home = () => {
   const clipboard = useClipboard({ value })
 
   return (
-    <div className="bg-gradient-to-r from-[#1a0026] to-[#343481] h-full">
+    <div className="bg-gradient-to-r from-blue-custom2 to-[#343481] h-full">
       <div className='flex flex-row justify-between px-4 py-3 border-b border-b-white-custom1/[0.2]'>
         <Image
           src={EmplifyLogo}
@@ -47,8 +36,8 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      <div className='py-36 px-40 text-center'>
-        <div className='space-y-20 mb-64'>
+      <div className='pt-28 pb-10 px-10 text-center'>
+        <div className='space-y-20 mb-56 px-28'>
           <h1 className='text-6xl text-white-custom1 font-bold'>
             Build a Portfolio That Empowers Your Future
           </h1>
@@ -65,10 +54,10 @@ const Home = () => {
             >
               Get Started
             </Button>
-            <div className='flex flex-row text-gray-custom2 justify-center items-center mt-4'>
-              <div className='text-sm'>{value}</div>
-              <Button onClick={clipboard.copy} ml={2}>
-                {clipboard.copied ? 'Copied!' : 'Copy'}
+            <div className='flex flex-row text-gray-custom2 justify-center items-center mt-6'>
+              <div className='text-sm mt-1'>{value}</div>
+              <Button onClick={clipboard.copy} ml={2} className='h-fit'>
+                {clipboard.copied ? <CheckIcon /> : <DocumentDuplicateIcon />}
               </Button>
             </div>
           </div>

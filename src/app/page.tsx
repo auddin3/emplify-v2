@@ -20,6 +20,7 @@ const Home = () => {
           src={EmplifyLogo}
           alt='EmplifyLogo'
           className='object-contain w-[100px] h-[40px]'
+          onClick={() => router.push('/')}
         />
         <div className='flex flex-row space-x-5 items-center'>
           <Button

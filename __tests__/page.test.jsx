@@ -2,7 +2,11 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import Home from '../src/app/page'
 
-describe('Page', () => {
+if (typeof global.structuredClone !== 'function') {
+  global.structuredClone = obj => JSON.parse(JSON.stringify(obj))
+}
+
+describe('Home', () => {
   it('renders a heading', () => {
     render(<Home />)
 

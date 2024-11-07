@@ -35,7 +35,10 @@ const config: Config = {
           custom2: '#888888',
         },
         orange: { custom1: '#F68D2E' },
-        white: { custom1: '#F7F7F8' },
+        white: {
+          custom1: '#F7F7F8',
+          custom2: '#F9FAFB',
+        },
       },
     },
   },

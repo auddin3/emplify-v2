@@ -33,6 +33,7 @@ const config: Config = {
         gray: {
           custom1: '#F8F9FD',
           custom2: '#888888',
+          custom3: '#F9FAFB',
         },
         orange: { custom1: '#F68D2E' },
         white: {

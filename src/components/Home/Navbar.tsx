@@ -22,13 +22,13 @@ const Navbar = () => {
           className='border border-white-custom1/[0.2] text-white-custom1 font-semibold px-5 rounded-xl'
           onClick={() => router.push('/login')}
         >
-              Login
+          Login
         </Button>
         <Button
           className='bg-white-custom1 font-semibold px-5 rounded-xl'
           onClick={() => router.push('/register')}
         >
-              Register
+          Register
         </Button>
       </div>
     </div>

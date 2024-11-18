@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 // import { useRouter } from 'next/navigation'
-import Navbar from '@/components/UserAuth/Navbar'
+import Navbar from '@/components/authentication/Navbar'
 import { Fieldset, Input } from '@chakra-ui/react'
 
 interface FormValues {
@@ -14,7 +14,8 @@ interface FormValues {
 
 const Register = () => {
   // const router = useRouter()
-  // const [show, setShow] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [show, setShow] = useState(false)
   const [userData, setUserData] = useState<FormValues>({
     email: '',
     password: '',
@@ -46,7 +47,7 @@ const Register = () => {
             <div key={field} className='space-y-1.5 my-1.5'>
               <div className="w-full ml-1 font-sansSemibold text-black-custom1 capitalize">{field}</div>
               <Input
-                type={field === 'password' ? 'password' : 'text'}
+                type={field === 'password' && !show ? 'password' : 'text'}
                 placeholder={`Enter your ${field}`}
                 size='sm'
                 className='border px-2.5'

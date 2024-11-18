@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 // import { useRouter } from 'next/navigation'
-import Navbar from '@/components/authentication/Navbar'
-import { Fieldset, Input } from '@chakra-ui/react'
+import { Field, Navbar } from '@/components/authentication/Index'
+import { Fieldset } from '@chakra-ui/react'
 
-interface FormValues {
+export interface FormValues {
   email: string
   password: string
   name: string
@@ -15,7 +15,6 @@ interface FormValues {
 const Register = () => {
   // const router = useRouter()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [show, setShow] = useState(false)
   const [userData, setUserData] = useState<FormValues>({
     email: '',
     password: '',
@@ -43,19 +42,8 @@ const Register = () => {
       </div>
       <Fieldset.Root size="lg" maxW="2xl" className='mx-auto p-4'>
         <Fieldset.Content className='my-5'>
-          {fields.map(field => (
-            <div key={field} className='space-y-1.5 my-1.5'>
-              <div className="w-full ml-1 font-sansSemibold text-black-custom1 capitalize">{field}</div>
-              <Input
-                type={field === 'password' && !show ? 'password' : 'text'}
-                placeholder={`Enter your ${field}`}
-                size='sm'
-                className='border px-2.5'
-                value={userData[field as keyof FormValues]}
-                onChange={e => handleChange(field, e.target.value)}
-                _placeholder={{ opacity: 1, color: 'gray.500' }}
-              />
-            </div>
+          {fields.map((field, idx) => (
+            <Field key={idx} field={field} userData={userData} handleChange={handleChange} />
           ))}
         </Fieldset.Content >
       </Fieldset.Root>

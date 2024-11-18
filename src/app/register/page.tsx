@@ -12,9 +12,32 @@ export interface FormValues {
   school: string
 }
 
+const dummySchools = [
+  'University of Birmingham',
+  'University of Bristol',
+  'Durham University',
+  'University of Edinburgh',
+  'Imperial College London',
+  'King\'s College London',
+  'London School of Economics and Political Science (LSE)',
+  'University of Leeds',
+  'University of Liverpool',
+  'University of Manchester',
+  'Newcastle University',
+  'University of Nottingham',
+  'University of Oxford',
+  'Queen Mary\'s University of London',
+  'University of Sheffield',
+  'University of Southampton',
+  'University of St Andrews',
+  'University of Warwick',
+  'University of Glasgow',
+  'University College London (UCL)',
+]
+
 const Register = () => {
   // const router = useRouter()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const [userData, setUserData] = useState<FormValues>({
     email: '',
     password: '',
@@ -22,7 +45,7 @@ const Register = () => {
     school: '',
   })
 
-  const fields = ['name', 'email', 'password']
+  const fields = ['name', 'email', 'password', 'school']
 
   const handleChange = (key: string, val: string) => {
     setUserData(prev => ({
@@ -43,7 +66,13 @@ const Register = () => {
       <Fieldset.Root size="lg" maxW="2xl" className='mx-auto p-4'>
         <Fieldset.Content className='my-5'>
           {fields.map((field, idx) => (
-            <Field key={idx} field={field} userData={userData} handleChange={handleChange} />
+            <Field
+              key={idx}
+              fieldName={field}
+              userData={userData}
+              schools={dummySchools}
+              handleChange={handleChange}
+            />
           ))}
         </Fieldset.Content >
       </Fieldset.Root>

@@ -68,13 +68,15 @@ const Register = () => {
   return (
     <div className='min-h-screen bg-white-custom2'>
       <Navbar />
-      <div className='bg-gray-custom3 space-y-2.5 text-center pt-10 2xl:pt-20 pb-7 2xl:pb-14'>
-        <h1 className='text-4xl font-sansBold text-black-custom1'>Register your account</h1>
-        <p className="2xl:mt-24 mb-7 2xl:mb-10">
+      <div className='bg-gray-100 py-14 2xl:py-20 pb-8 2xl:pb-14'>
+        <div className='flex flex-col items-center w-fit mx-auto space-y-1.5'>
+          <h1 className='text-4xl font-bold text-black-custom1'>Register your account</h1>
+          <p className="mr-auto">
             Already have an account? <a href="/login" className="font-semibold text-blue-500">Login.</a>
-        </p>
+          </p>
+        </div>
       </div>
-      <Fieldset.Root size="lg" maxW="2xl" className='mx-auto p-4'>
+      <Fieldset.Root size="lg" maxW="xl" className='mx-auto p-4 mt-10'>
         <Fieldset.Content className='my-1'>
           {fields.map((field, idx) => (
             <Field
@@ -88,7 +90,7 @@ const Register = () => {
         </Fieldset.Content >
         <Button
           size='lg'
-          className="bg-blue-custom1 text-white-custom2 w-5/12 2xl:w-1/3 rounded-md mx-auto my-10"
+          className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto mt-20 mb-16"
         // onClick={() => handleRegister(userData)}
         >
           Register

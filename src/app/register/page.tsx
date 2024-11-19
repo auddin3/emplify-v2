@@ -42,8 +42,8 @@ const dummySchools = [
 export interface FormValues {
   email: string
   password: string
-  name: string
-  school: string
+  name?: string
+  school?: string
 }
 
 const Register = () => {

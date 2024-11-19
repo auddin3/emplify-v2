@@ -6,13 +6,6 @@ import { FormValues } from '@/app/register/page'
 import { Button, Input } from '@chakra-ui/react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 
-interface FieldProps {
-    fieldName: string
-    userData: FormValues
-    schools?: { id: string, name: string }[]
-    handleChange: (key: string, val: string) => void
-}
-
 interface SelectFieldProps {
   items: { id: string, name: string }[]
   fieldName: string
@@ -43,6 +36,13 @@ const SelectField = ({ items, fieldName, selectedValue, handleChange } : SelectF
   )
 }
 
+interface FieldProps {
+  fieldName: string
+  userData: FormValues
+  schools?: { id: string, name: string }[]
+  handleChange: (key: string, val: string) => void
+}
+
 const Field = ({ fieldName, userData, schools, handleChange }: FieldProps ) => {
   const [show, setShow] = useState(false)
 
@@ -53,7 +53,7 @@ const Field = ({ fieldName, userData, schools, handleChange }: FieldProps ) => {
         ? <SelectField
           items={schools}
           fieldName='school'
-          selectedValue={userData.school}
+          selectedValue={userData.school ?? ''}
           handleChange={handleChange}
         />
         : (

@@ -70,8 +70,8 @@ const Register = () => {
       <Navbar />
       <div className='bg-gray-100 py-14 2xl:py-20 pb-8 2xl:pb-14'>
         <div className='flex flex-col items-center w-fit mx-auto space-y-1.5'>
-          <h1 className='text-4xl font-bold text-black-custom1'>Register your account</h1>
-          <p className="mr-auto">
+          <h1 className='text-4xl font-bold text-black-custom1 -ml-10'>Register your account</h1>
+          <p className="mr-auto -ml-10">
             Already have an account? <a href="/login" className="font-semibold text-blue-500">Login.</a>
           </p>
         </div>
@@ -90,7 +90,7 @@ const Register = () => {
         </Fieldset.Content >
         <Button
           size='lg'
-          className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto mt-20 mb-16"
+          className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto my-10"
         // onClick={() => handleRegister(userData)}
         >
           Register

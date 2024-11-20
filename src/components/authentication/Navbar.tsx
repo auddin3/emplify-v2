@@ -13,7 +13,7 @@ const Navbar = () => {
       <Image
         src={EmplifyLogo}
         alt='Emplify Logo'
-        className='object-contain w-16 h-20'
+        className='object-contain w-16 h-16'
         onClick={() => router.push('/')}
       />
     </div>

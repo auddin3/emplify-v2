@@ -29,6 +29,7 @@ const config: Config = {
         black: {
           custom1: '#333D49',
           custom2: '#000000',
+          custom3: '#333E49',
         },
         gray: {
           custom1: '#F8F9FD',

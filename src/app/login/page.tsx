@@ -31,8 +31,8 @@ const Login = () => {
     <div className='min-h-screen bg-white-custom2'>
       <Navbar />
       <div className='bg-gray-100 py-14 2xl:py-20 pb-8 2xl:pb-14'>
-        <div className='flex flex-col items-center w-fit mx-auto space-y-1.5'>
-          <h1 className='text-4xl font-bold text-black-custom1'>Login to your account</h1>
+        <div className='flex flex-col items-center w-fit mx-auto space-y-1.5 text-black-custom3'>
+          <h1 className='text-4xl font-bold mr-10'>Login to your account</h1>
           <p className="mr-auto">
             Welcome back!
           </p>
@@ -49,16 +49,18 @@ const Login = () => {
             />
           ))}
         </Fieldset.Content >
-        <p className="mr-auto text-sm">
+        <div className='my-12 space-y-4'>
+          <p className="text-center text-sm text-black-custom3">
             Dont have an account? <a href="/register" className="font-semibold text-blue-500">Register an account.</a>
-        </p>
-        <Button
-          size='lg'
-          className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto mt-20 mb-16"
-        // onClick={() => handleRegister(userData)}
-        >
+          </p>
+          <Button
+            size='lg'
+            className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto"
+            // onClick={() => handleRegister(userData)}
+          >
           Login
-        </Button>
+          </Button>
+        </div>
       </Fieldset.Root>
     </div>
   )

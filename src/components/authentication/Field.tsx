@@ -57,7 +57,7 @@ const Field = ({ fieldName, userData, schools, handleChange }: FieldProps ) => {
           handleChange={handleChange}
         />
         : (
-          <div className='flex flex-row'>
+          <div className='flex flex-row text-black-custom3'>
             <Input
               type={fieldName === 'password' && !show ? 'password' : 'text'}
               placeholder={`Enter your ${fieldName}`}

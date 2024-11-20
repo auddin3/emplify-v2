@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { FormValues } from '@/app/register/page'
+import User from '@/app/models/user'
 import { Button, Input } from '@chakra-ui/react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 
@@ -38,22 +38,22 @@ const SelectField = ({ items, fieldName, selectedValue, handleChange } : SelectF
 
 interface FieldProps {
   fieldName: string
-  userData: FormValues
-  schools?: { id: string, name: string }[]
+  formData: User
+  options?: { id: string, name: string }[]
   handleChange: (key: string, val: string) => void
 }
 
-const Field = ({ fieldName, userData, schools, handleChange }: FieldProps ) => {
+const Field = ({ fieldName, formData, options, handleChange }: FieldProps ) => {
   const [show, setShow] = useState(false)
 
   return (
     <div className='space-y-1.5 my-1'>
       <div className="w-full ml-1 text-sm font-semibold text-black-custom1 capitalize">{fieldName}</div>
-      { fieldName === 'school' && schools
+      { fieldName === 'school' && options
         ? <SelectField
-          items={schools}
+          items={options}
           fieldName='school'
-          selectedValue={userData.school ?? ''}
+          selectedValue={formData.school ?? ''}
           handleChange={handleChange}
         />
         : (
@@ -63,7 +63,7 @@ const Field = ({ fieldName, userData, schools, handleChange }: FieldProps ) => {
               placeholder={`Enter your ${fieldName}`}
               size='xs'
               className='border px-2.5 text-xs font-black-custom1'
-              value={userData[fieldName as keyof FormValues]}
+              value={formData[fieldName as keyof User]}
               onChange={e => handleChange(fieldName, e.target.value)}
               _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
             />

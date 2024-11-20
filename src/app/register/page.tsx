@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 // import { useRouter } from 'next/navigation'
+import User from '../models/user'
 import { Field, Navbar } from '@/components/authentication'
 import { Button, Fieldset } from '@chakra-ui/react'
 
@@ -39,17 +40,11 @@ const dummySchools = [
     name: 'Queen Mary\'s University London',
   },
 ]
-export interface FormValues {
-  email: string
-  password: string
-  name?: string
-  school?: string
-}
 
 const Register = () => {
   // const router = useRouter()
 
-  const [userData, setUserData] = useState<FormValues>({
+  const [userData, setUserData] = useState<User>({
     email: '',
     password: '',
     name: '',
@@ -82,8 +77,8 @@ const Register = () => {
             <Field
               key={idx}
               fieldName={field}
-              userData={userData}
-              schools={dummySchools}
+              formData ={userData}
+              options={dummySchools}
               handleChange={handleChange}
             />
           ))}

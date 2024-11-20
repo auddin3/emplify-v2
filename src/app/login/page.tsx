@@ -2,18 +2,14 @@
 
 import React, { useState } from 'react'
 // import { useRouter } from 'next/navigation'
+import User from '../models/user'
 import { Field, Navbar } from '@/components/authentication'
 import { Button, Fieldset } from '@chakra-ui/react'
-
-export interface FormValues {
-  email: string
-  password: string
-}
 
 const Login = () => {
   // const router = useRouter()
 
-  const [userData, setUserData] = useState<FormValues>({
+  const [userData, setUserData] = useState<User>({
     email: '',
     password: '',
   })

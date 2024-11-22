@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import EmplifyLogo from '../../public/logo.png'
-import Accordion from '@/components/Home/Accordion'
+import Accordion from '@/components/home/Accordion'
 import { Button, useClipboard } from '@chakra-ui/react'
 import { CheckIcon, DocumentDuplicateIcon } from '@heroicons/react/24/solid'
 

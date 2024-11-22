@@ -26,7 +26,7 @@ const Login = () => {
   return (
     <div className='min-h-screen bg-white-custom2'>
       <Navbar />
-      <div className='bg-gray-100 py-14 2xl:py-20 pb-8 2xl:pb-14'>
+      <div className='bg-gray-custom4 py-14 2xl:py-20 pb-8 2xl:pb-14'>
         <div className='flex flex-col items-center w-fit mx-auto space-y-1.5 text-black-custom3'>
           <h1 className='text-4xl font-bold mr-10'>Login to your account</h1>
           <p className="mr-auto">

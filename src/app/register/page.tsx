@@ -45,7 +45,7 @@ const Register = () => {
         :
         (
           <>
-            <div className='bg-gray-100 py-14 2xl:py-20 pb-8 2xl:pb-14'>
+            <div className='bg-gray-custom4 py-14 2xl:py-20 pb-8 2xl:pb-14'>
               <div className='flex flex-col items-center w-fit mx-auto space-y-1.5'>
                 <h1 className='text-4xl font-bold text-black-custom1 -ml-10'>Register your account</h1>
                 <p className="mr-auto -ml-10">

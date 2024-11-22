@@ -14,7 +14,7 @@ const Navbar = () => {
       <Image
         src={EmplifyLogo}
         alt='Emplify Logo'
-        className='object-contain w-16 h-10'
+        className='object-contain w-16 h-10 cursor-pointer'
         onClick={() => router.push('/')}
       />
       <div className='flex flex-row space-x-5 items-center'>

@@ -16,7 +16,7 @@ const Home = () => {
     <div className="bg-gradient-to-r from-blue-custom2 to-purple-custom4 h-full">
       <Navbar />
       <div className='pt-28 pb-10 px-10 text-center'>
-        <div className='space-y-20 mb-56 px-28'>
+        <div className='space-y-20 mb-20 px-28'>
           <h1 className='text-6xl text-white-custom1 font-bold'>
             Build a Portfolio That Empowers Your Future
           </h1>

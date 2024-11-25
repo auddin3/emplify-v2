@@ -1,17 +1,17 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import User from '../models/user'
 import School from '../models/school'
 import { Field, Navbar } from '@/components/authentication'
 import { Button, Fieldset, Spinner } from '@chakra-ui/react'
 
 const Register = () => {
-  // const router = useRouter()
+  const router = useRouter()
   const API_ROOT = process.env.NEXT_PUBLIC_API_URL
   const [schools, setSchools] = useState<School[]>()
-  const [userData, setUserData] = useState<User>({
+  const [formData, setFormData] = useState<User>({
     email: '',
     password: '',
     name: '',
@@ -21,10 +21,32 @@ const Register = () => {
   const fields = ['name', 'email', 'password', 'school']
 
   const handleChange = (key: string, val: string) => {
-    setUserData(prev => ({
+    setFormData(prev => ({
       ...prev,
       [key]: val,
     }))
+  }
+
+  const handleRegister = async() => {
+    try {
+      const {name, email, password, school} = formData
+
+      const res = await fetch(`${API_ROOT}/api/register`, {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          school,
+        }),
+      })
+
+      if (res.status === 201) router.push('/login')
+
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   useEffect(() => {
@@ -59,7 +81,7 @@ const Register = () => {
                   <Field
                     key={UKPRNx}
                     fieldName={field}
-                    formData ={userData}
+                    formData ={formData}
                     options={schools}
                     handleChange={handleChange}
                   />
@@ -68,7 +90,7 @@ const Register = () => {
               <Button
                 size='lg'
                 className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto my-10"
-                // onClick={() => handleRegister(userData)}
+                onClick={() => handleRegister()}
               >
           Register
               </Button>

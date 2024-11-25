@@ -27,7 +27,7 @@ const Home = () => {
           <Button
             size='xl'
             className='bg-white-custom1 font-semibold px-5 rounded-xl'
-            onClick={() => router.push('/register')}
+            onClick={() => router.push('/login')}
           >
               Get Started
           </Button>

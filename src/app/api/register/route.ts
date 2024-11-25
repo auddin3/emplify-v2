@@ -19,7 +19,7 @@ export const POST = async (request: NextRequest) => {
   try {
     await createUser(newUser)
   } catch {
-    return new NextResponse('Error', {status: 500})
+    return new NextResponse('Unable to create user', {status: 500})
   }
 
   return new NextResponse('User has been created', {status: 201})

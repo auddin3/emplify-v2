@@ -51,6 +51,7 @@ const NavItem = ({ href, ariaLabel, isActive, IconComponent }: NavItemProps) => 
 
 const Navbar = () => {
   const [session, setSession] = useState<Session>()
+  const [loading, setLoading] = useState(true)
   const pathname = usePathname()
 
   const navItems = [
@@ -61,18 +62,21 @@ const Navbar = () => {
 
   useEffect(() => {
     const establishSession = async() => {
+      setLoading(true)
       try {
         const res = await getSession()
         if (res) setSession(res)
       } catch (e) {
         console.error(e)
+      } finally {
+        setLoading(false)
       }
     }
 
     establishSession()
   }, [])
 
-  if (!session) return ( <div className='flex flex-col justify-between min-h-screen bg-blue-custom1 max-w-28 min-w-28 rounded-r-3xl'></div> )
+  if (loading) return (<div className='flex flex-col justify-between min-h-screen bg-blue-custom1 max-w-28 min-w-28 rounded-r-3xl'></div> )
 
   return (
     <div className='flex flex-col h-screen bg-blue-custom1 max-w-28 min-w-28 rounded-r-3xl'>
@@ -80,6 +84,7 @@ const Navbar = () => {
         src={EmplifyLogo}
         alt='KPMG Logo'
         className='object-contain h-[50px] w-[100px] mt-12 mb-20 px-4 mx-auto'
+        priority
       />
       <div className='flex flex-col h-full space-y-7'>
         {navItems.map(item => (
@@ -94,7 +99,7 @@ const Navbar = () => {
       </div>
       <div className='mx-auto pb-16'>
         {session?.user?.image
-          ? ( <Image src={session?.user?.image} alt="avatar" width={72} height={72} className="object-cover rounded-full"/>)
+          ? ( <Image src={session?.user?.image} alt="avatar" width={72} height={72} className="object-cover rounded-full" priority/>)
           : ( <div className={'flex items-center justify-center rounded-full bg-pink-custom1 h-[72px] w-[72px]'}>
             <div className={'flex items-center justify-center w-full h-full font-semibold text-white-custom2 text-3xl'}>
               {session?.user?.name?.split(' ').map(name => name[0]).join('')}

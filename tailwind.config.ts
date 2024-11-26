@@ -29,13 +29,20 @@ const config: Config = {
         black: {
           custom1: '#333D49',
           custom2: '#000000',
+          custom3: '#333E49',
+          custom4: '#130F25',
         },
         gray: {
           custom1: '#F8F9FD',
           custom2: '#888888',
+          custom3: '#F9FAFB',
+          custom4: '#F4F7FA',
         },
         orange: { custom1: '#F68D2E' },
-        white: { custom1: '#F7F7F8' },
+        white: {
+          custom1: '#F7F7F8',
+          custom2: '#F9FAFB',
+        },
       },
     },
   },

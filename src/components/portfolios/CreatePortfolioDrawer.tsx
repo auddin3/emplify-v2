@@ -6,6 +6,7 @@ import { DrawerBackdrop, DrawerBody, DrawerCloseTrigger, DrawerContent, DrawerFo
 import { Session } from 'next-auth'
 import { Field } from '../ui/field'
 import { Checkbox } from '../ui/checkbox'
+import { toaster } from '@/components/ui/toaster'
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
 import { getSession } from '@/app/actions'
 import Spinner from '../Spinner'
@@ -138,8 +139,18 @@ const CreatePortfolioDrawer = () => {
           deadline,
         }),
       })
-    } catch (e) {
-      console.error(e)
+
+      if (res.status === 200) {
+        toaster.create({
+          title: 'Operation successful',
+          type: 'success',
+        })
+      }
+    } catch {
+      toaster.create({
+        title: 'Operation failed',
+        type: 'error',
+      })
     } finally {
       setLoading(false)
     }
@@ -167,7 +178,7 @@ const CreatePortfolioDrawer = () => {
     establishSession()
   }, [])
 
-  if (loading) return ( <Spinner size={100} color="#1D4ED8" thickness={5} /> )
+  if (loading) return ( <Spinner size={10} color="#1D4ED8" thickness={5} /> )
 
   return (
     <DrawerRoot size='sm'>
@@ -226,7 +237,7 @@ const CreatePortfolioDrawer = () => {
                     gap={4}
                     alignItems={'flex-start'}
                     colorPalette={'blue'}
-                    onChange={e => handleCheckboxChange(ksb)}
+                    onChange={() => handleCheckboxChange(ksb)}
                   >
                     <Box lineHeight="1">{ksb.subtitle}</Box>
                     <Box fontWeight="normal" color="fg.muted" mt="1">

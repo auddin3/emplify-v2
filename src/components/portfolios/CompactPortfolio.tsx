@@ -3,8 +3,9 @@ import Portfolio, { KSB } from "@/app/models/portfolio"
 import { Avatar } from '../ui/avatar'
 import { IconButton } from '@chakra-ui/react'
 import { ArrowRightCircleIcon } from '@heroicons/react/24/solid'
+import CreateEntryDrawer from './CreateEntryDrawer'
 
-const KSBCard = ({ ksb }: { ksb: KSB }) => {
+const KSBCard = ({ portfolio, ksb }: { portfolio: Portfolio, ksb: KSB }) => {
     const colorPalette = ["red", "blue", "green", "yellow", "purple", "orange"]
 
     const pickPalette = (name: string) => {
@@ -21,9 +22,7 @@ const KSBCard = ({ ksb }: { ksb: KSB }) => {
                     <div>{ksb.description}.</div>
                 </div>
             </div>
-            <IconButton aria-label="See entry" rounded="full">
-                <ArrowRightCircleIcon className='text-blue-custom3 h-12 w-12 justify-end'/>
-            </IconButton>
+            <CreateEntryDrawer portfolio={portfolio} ksb={ksb}/>
         </div>
     )
 }
@@ -55,13 +54,6 @@ const dummyData = {
 const CompactPortfolio = ({ selectedPortfolio }: CompactPortfolioProps) => {
     const { incompleteKSBs, achievedKSBs } = dummyData
 
-    const colorPalette = ["red", "blue", "green", "yellow", "purple", "orange"]
-
-    const pickPalette = (name: string) => {
-        const index = name.charCodeAt(0) % colorPalette.length
-        return colorPalette[index]
-    }
-
     return (
         <div className="bg-gray-custom1 w-full p-10"> 
             <div className="text-2xl font-semibold">{selectedPortfolio?.name}</div>
@@ -70,13 +62,13 @@ const CompactPortfolio = ({ selectedPortfolio }: CompactPortfolioProps) => {
                 <div className='my-10'>
                     <div className="font-semibold text-gray-custom2 mb-4">Incomplete</div>
                     {incompleteKSBs.map((ksb) => (
-                        <KSBCard ksb={ksb} key={ksb.title}/>
+                        <KSBCard portfolio={selectedPortfolio} ksb={ksb} key={ksb.title}/>
                     ))}
                 </div>
                 <div className='my-10'>
                     <div className="font-semibold text-gray-custom2 mb-4">Achieved</div>
                     {achievedKSBs.map((ksb) => (
-                        <KSBCard ksb={ksb} key={ksb.title}/>
+                        <KSBCard portfolio={selectedPortfolio} ksb={ksb} key={ksb.title}/>
                     ))}
                 </div>
             </div>

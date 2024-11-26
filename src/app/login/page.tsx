@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const response = await loginWithCredentials(userData)
       if (!response.error) (
-        router.push('/dashboard')
+        router.push('/portfolios')
       )
     } catch (e) {
       console.error(e)

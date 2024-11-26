@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Button, IconButton } from '@chakra-ui/react'
+import { Button, IconButton, Input } from '@chakra-ui/react'
 import { DrawerBackdrop, DrawerBody, DrawerCloseTrigger, DrawerContent, DrawerFooter, DrawerHeader,
-  DrawerRoot, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
+  DrawerRoot, DrawerTitle, DrawerTrigger } from '../ui/drawer'
 import { Session } from 'next-auth'
+import { Field } from '../ui/field'
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
 import { getSession } from '@/app/actions'
 import Spinner from '../Spinner'
@@ -13,11 +14,18 @@ const CreatePortfolioDrawer = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [formData, setFormData] = useState({
     name: '',
+    description: '',
     owner: session?.user?.id,
     specification: [],
     deadline: new Date(),
-    description: '',
   })
+
+  const handleChange = (key: string, val: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [key]: val,
+    }))
+  }
 
   useEffect(() => {
     const establishSession = async() => {
@@ -38,7 +46,7 @@ const CreatePortfolioDrawer = () => {
   if (loading) return ( <Spinner size={100} color="#1D4ED8" thickness={5} /> )
 
   return (
-    <DrawerRoot size='md'>
+    <DrawerRoot size='sm'>
       <DrawerBackdrop />
       <DrawerTrigger asChild>
         <div
@@ -52,12 +60,34 @@ const CreatePortfolioDrawer = () => {
           />
         </div>
       </DrawerTrigger>
-      <DrawerContent offset="4" rounded="md">
+      <DrawerContent rounded="md">
         <DrawerHeader>
           <DrawerTitle className='font-semibold text-blue-custom1 text-[18px] pb-2'>New Portfolio</DrawerTitle>
           <hr className='border-t border-t-black-custom1/20 text-black-custom1 w-full absolute left-0 right-0'/>
         </DrawerHeader>
-        <DrawerBody>
+        <DrawerBody className = 'space-y-6'>
+          <Field label="Name">
+            <Input
+              type={'text'}
+              placeholder={'Enter portfolio name'}
+              size="xs"
+              className="border px-2.5 text-xs font-black-custom1"
+              value={formData?.name}
+              onChange={e => handleChange('name', e.target.value)}
+              _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
+            />
+          </Field>
+          <Field label="Description">
+            <Input
+              type={'text'}
+              placeholder={'Enter portfolio description'}
+              size="xs"
+              className="border px-2.5 text-xs font-black-custom1"
+              value={formData?.description}
+              onChange={e => handleChange('description', e.target.value)}
+              _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
+            />
+          </Field>
         </DrawerBody>
         <DrawerFooter>
           <Button size="sm" className='mx-auto bg-blue-custom1 text-white-custom2 font-semibold rounded-xl px-5'>Save</Button>

@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import React, { useState } from 'react'
+import User from '@/app/models/user'
+import School from '@/app/models/school'
 import { Button, Input } from '@chakra-ui/react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 
@@ -45,14 +46,14 @@ const SelectField = <T, >({
   )
 }
 
-interface FieldProps<T> {
+interface FieldProps {
   fieldName: string
-  formData: T[]
-  options?: T[]
+  formData: User
+  options?: School[]
   handleChange: (key: string, val: string) => void
 }
 
-const Field = <T extends string | number | readonly string[] | undefined, >({ fieldName, formData, options, handleChange }: FieldProps<T>) => {
+const CustomField = ({ fieldName, formData, options, handleChange }: FieldProps) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -62,10 +63,10 @@ const Field = <T extends string | number | readonly string[] | undefined, >({ fi
         <SelectField
           items={options}
           fieldName="school"
-          selectedValue={(formData as any)['school'] || ''}
+          selectedValue={formData.school ?? ''}
           handleChange={handleChange}
-          getItemKey={item => (item as any)['UKPRN']}
-          getItemValue={item => (item as any)['name']}
+          getItemKey={item => item.UKPRN}
+          getItemValue={item => item.name}
         />
       ) : (
         <div className="flex flex-row text-black-custom3">
@@ -74,7 +75,7 @@ const Field = <T extends string | number | readonly string[] | undefined, >({ fi
             placeholder={`Enter your ${fieldName}`}
             size="xs"
             className="border px-2.5 text-xs font-black-custom1"
-            value={formData[(fieldName as any)]}
+            value={formData[fieldName as keyof User]}
             onChange={e => handleChange(fieldName, e.target.value)}
             _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
           />
@@ -89,4 +90,4 @@ const Field = <T extends string | number | readonly string[] | undefined, >({ fi
   )
 }
 
-export default Field
+export default CustomField

@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import User from '../models/user'
 import School from '../models/school'
-import { Field, Navbar } from '@/components/authentication'
-import { Button, Fieldset } from '@chakra-ui/react'
+import { Navbar } from '@/components/authentication'
+import { Button, Fieldset, Input } from '@chakra-ui/react'
+import { Field } from '@/components/ui/field'
+import CustomField from '@/components/authentication/Field'
 import Spinner from '@/components/Spinner'
 
 const Register = () => {
@@ -81,17 +84,35 @@ const Register = () => {
         </div>
       </div>
       <Fieldset.Root size="lg" maxW="xl" className='mx-auto p-4 mt-10'>
-        <Fieldset.Content className='my-1'>
-          {fields.map((field, UKPRNx) => (
-            <Field
-              key={UKPRNx}
-              fieldName={field}
-              formData ={formData}
-              options={schools}
-              handleChange={handleChange}
-            />
-          ))}
-        </Fieldset.Content >
+        <Fieldset.Content className="my-1">
+          {fields.map(field =>
+            (field === 'school' || field === 'password') ? (
+              <CustomField
+                key={field}
+                fieldName={field}
+                formData ={formData}
+                options={schools}
+                handleChange={handleChange}
+              />
+            ) : (
+              <Field label={field} key={field} className="capitalize">
+                <Input
+                  type={field === 'password' ? 'password' : 'text'}
+                  placeholder={`Enter your ${field}`}
+                  size="xs"
+                  className="border px-2.5 text-xs font-black-custom1"
+                  value={formData[field as keyof User]}
+                  onChange={e => handleChange(field, e.target.value)}
+                  _placeholder={{
+                    opacity: 1,
+                    color: 'gray.500',
+                    fontSize: '12px',
+                  }}
+                />
+              </Field>
+            ),
+          )}
+        </Fieldset.Content>
         <Button
           size='lg'
           className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto my-10"

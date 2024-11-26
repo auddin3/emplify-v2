@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar'
 import Spinner from '@/components/Spinner'
 import PortfolioGrid from '@/components/portfolios/PortfolioGrid'
 import { useRouter } from 'next/navigation'
+import CompactPortfolio from '@/components/portfolios/CompactPortfolio'
 
 const Portfolios = () => {
   const [session, setSession] = useState<Session>()
@@ -63,7 +64,7 @@ const Portfolios = () => {
       <Navbar />
       { selectedPortfolio 
         ? (
-          <div> Selected {selectedPortfolio.name} baby</div>
+          <CompactPortfolio selectedPortfolio={selectedPortfolio}/>
         )
         : (
           <div className="w-full px-14 py-12 max-h-screen overflow-y-scroll">

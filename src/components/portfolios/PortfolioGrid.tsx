@@ -43,55 +43,14 @@ const GridItem = ({ portfolio }: { portfolio: Portfolio }) => {
   )
 }
 
-const PortfolioGrid = () => {
-  const [session, setSession] = useState<Session>()
-  const [loading, setLoading] = useState(true)
-  const API_ROOT = process.env.NEXT_PUBLIC_API_URL
-  const [portfolios, setPortfolios] = useState<Portfolio[]>()
-
-  useEffect(() => {
-    const establishSession = async () => {
-      setLoading(true);
-      try {
-        const res = await getSession();
-        if (res) setSession(res);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    establishSession()
-  }, [])
-  
-  useEffect(() => {
-    const fetchPortfolios = async () => {
-      if (!session?.user?.id) return
-      try {
-        setLoading(true)
-        const res = await fetch(`${API_ROOT}/api/portfolios/${session.user.id}`)
-        const { portfolios } = await res.json()
-        setPortfolios(portfolios)
-      } catch (e) {
-        console.error(e)
-      } finally {
-        setLoading(false)
-      }
-    }
-  
-    fetchPortfolios();
-  }, [session?.user?.id, API_ROOT])
-  
-  if (loading) return ( <Spinner size={100} color="#1D4ED8" thickness={5} /> )
-
+const PortfolioGrid = ({ portfolios, setPortfolios }: { portfolios: Portfolio[], setPortfolios: React.Dispatch<React.SetStateAction<Portfolio[] | undefined>> }) => {
   return (
     <div className='space-y-10'>
       <Grid templateColumns='repeat(2, 1fr)' rowGap={8} columnGap={10} marginTop={8}>
         {portfolios?.map(portfolio => (
           <GridItem key={portfolio.name} portfolio={portfolio}/>
         ))}
-        <CreatePortfolioDrawer />
+        <CreatePortfolioDrawer setPortfolios={setPortfolios}/>
       </Grid>
     </div>
   )

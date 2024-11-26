@@ -10,7 +10,7 @@ export async function GET(request: NextRequest, { params }: { params: { user: st
       }
   
       const portfolios = await getPortfoliosByUser(user)
-      return NextResponse.json({ portfolios });
+      return NextResponse.json({ portfolios })
     } catch (error) {
       console.error(error);
       return NextResponse.json({ error: 'Unable to fetch portfolios' }, { status: 500 });

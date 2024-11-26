@@ -8,6 +8,7 @@ import { Field } from '../ui/field'
 import { Checkbox } from '../ui/checkbox'
 import { toaster } from '@/components/ui/toaster'
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
+import Portfolio from '@/app/models/portfolio'
 import { getSession } from '@/app/actions'
 import Spinner from '../Spinner'
 import { KSB } from '@/app/models/portfolio'
@@ -89,7 +90,7 @@ const dummyKSBs = [
   },
 ]
 
-const CreatePortfolioDrawer = () => {
+const CreatePortfolioDrawer = ({ setPortfolios }: { setPortfolios: React.Dispatch<React.SetStateAction<Portfolio[] | undefined>> }) => {
   const [session, setSession] = useState<Session>()
   const API_ROOT = process.env.NEXT_PUBLIC_API_URL
   const [loading, setLoading] = useState(true)
@@ -124,7 +125,7 @@ const CreatePortfolioDrawer = () => {
     }))
   }
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     try {
       const { name, description, owner, specification, deadline } = formData
       setLoading(true)
@@ -139,13 +140,17 @@ const CreatePortfolioDrawer = () => {
           deadline,
         }),
       })
-
+  
       if (res.status === 200) {
         toaster.create({
           title: 'Operation successful',
           type: 'success',
         })
       }
+
+      const { portfolios } = await res.json()
+      setPortfolios(portfolios)
+  
     } catch {
       toaster.create({
         title: 'Operation failed',
@@ -154,7 +159,7 @@ const CreatePortfolioDrawer = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }  
 
   useEffect(() => {
     const establishSession = async () => {

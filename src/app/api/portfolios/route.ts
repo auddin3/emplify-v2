@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createPortfolio } from '@/app/services/portfolios'
+import { createPortfolio, getPortfoliosByUser } from '@/app/services/portfolios'
 import { ObjectId } from 'mongodb'
 
 export const POST = async (request: NextRequest) => {
@@ -10,9 +10,10 @@ export const POST = async (request: NextRequest) => {
 
   try {
     await createPortfolio(portfolio)
-  } catch {
-    return new NextResponse('Unable to create portfolio', {status: 500})
+    const portfolios = await getPortfoliosByUser(owner)
+    return NextResponse.json({ portfolios }, { status: 201 })
+  } catch (error) {
+    console.error(error)
+    return new NextResponse('Unable to create portfolio', { status: 500 })
   }
-
-  return new NextResponse('Portfolio has been created', {status: 201})
 }

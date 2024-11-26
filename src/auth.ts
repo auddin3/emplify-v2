@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { getUserByEmail } from './app/services/users'
+import { createUser, getUserByEmail } from './app/services/users'
 import bcrypt from 'bcryptjs'
 
 export const {
@@ -47,4 +47,36 @@ export const {
       },
     }),
   ],
+  callbacks: {
+    async signIn({ account, profile }) {
+      if (account?.provider === 'github') {
+
+        const githubUser = {
+          email: profile?.email,
+          name: profile?.name || profile?.login,
+        }
+
+        const existingUser = await getUserByEmail(githubUser?.email as string)
+
+        if (!existingUser) {
+          await createUser({
+            email: githubUser.email as string,
+            name: githubUser.name as string,
+            password: '', // No password for social logins
+            school: 'Queen Mary University of London',
+          })
+        }
+      }
+      return true
+    },
+
+    async session({ session }) {
+      const existingUser = await getUserByEmail(session.user.email)
+      if (existingUser) {
+        session.user.id = existingUser._id as unknown as string
+      }
+      return session
+    },
+  },
+
 })

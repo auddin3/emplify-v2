@@ -8,8 +8,6 @@ const Dashboard = async () => {
 
   if (!session?.user) redirect ('/')
 
-  console.log(session.user)
-
   return (
     <div>
       <h1>{session?.user?.name}</h1>

@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 'use client'
 
 import React, { useState } from 'react'
-import User from '@/app/models/user'
-import School from '@/app/models/school'
 import { Button, Input } from '@chakra-ui/react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 
@@ -46,14 +45,14 @@ const SelectField = <T, >({
   )
 }
 
-interface FieldProps {
+interface FieldProps<T> {
   fieldName: string
-  formData: User
-  options?: School[]
+  formData: T[]
+  options?: T[]
   handleChange: (key: string, val: string) => void
 }
 
-const Field = ({ fieldName, formData, options, handleChange }: FieldProps) => {
+const Field = <T extends string | number | readonly string[] | undefined, >({ fieldName, formData, options, handleChange }: FieldProps<T>) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -63,10 +62,10 @@ const Field = ({ fieldName, formData, options, handleChange }: FieldProps) => {
         <SelectField
           items={options}
           fieldName="school"
-          selectedValue={formData.school ?? ''}
+          selectedValue={(formData as any)['school'] || ''}
           handleChange={handleChange}
-          getItemKey={item => item.UKPRN}
-          getItemValue={item => item.name}
+          getItemKey={item => (item as any)['UKPRN']}
+          getItemValue={item => (item as any)['name']}
         />
       ) : (
         <div className="flex flex-row text-black-custom3">
@@ -75,7 +74,7 @@ const Field = ({ fieldName, formData, options, handleChange }: FieldProps) => {
             placeholder={`Enter your ${fieldName}`}
             size="xs"
             className="border px-2.5 text-xs font-black-custom1"
-            value={formData[fieldName as keyof User]}
+            value={formData[(fieldName as any)]}
             onChange={e => handleChange(fieldName, e.target.value)}
             _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
           />

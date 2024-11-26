@@ -88,6 +88,16 @@ const CreatePortfolioDrawer = () => {
               _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
             />
           </Field>
+          <Field label="Deadline">
+            <Input
+              type={'date'}
+              size="xs"
+              className="border px-2.5 text-xs font-black-custom1"
+              value={formData?.deadline.toString()}
+              onChange={e => handleChange('deadline', e.target.value)}
+              _placeholder={{ opacity: 1, color: 'gray.500', fontSize: '12px' }}
+            />
+          </Field>
         </DrawerBody>
         <DrawerFooter>
           <Button size="sm" className='mx-auto bg-blue-custom1 text-white-custom2 font-semibold rounded-xl px-5'>Save</Button>

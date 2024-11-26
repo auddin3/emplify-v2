@@ -178,7 +178,7 @@ const CreatePortfolioDrawer = () => {
     establishSession()
   }, [])
 
-  if (loading) return ( <Spinner size={10} color="#1D4ED8" thickness={5} /> )
+  if (loading) return ( <></> )
 
   return (
     <DrawerRoot size='sm'>

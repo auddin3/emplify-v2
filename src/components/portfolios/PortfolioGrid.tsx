@@ -9,7 +9,7 @@ import CreatePortfolioDrawer from './CreatePortfolioDrawer'
 import Portfolio from '@/app/models/portfolio'
 import { calculateDateDifference } from '@/app/util'
 
-const GridItem = ({ portfolio }: { portfolio: Portfolio }) => {
+const GridItem = ({ portfolio, setSelectedPortfolio }: { portfolio: Portfolio, setSelectedPortfolio: (portfolio: Portfolio) => void }) => {
   const daysRemaining = calculateDateDifference(portfolio?.deadline)
 
   return (
@@ -35,7 +35,7 @@ const GridItem = ({ portfolio }: { portfolio: Portfolio }) => {
       <Button
           size='sm'
           className="bg-blue-custom1 text-white-custom2 font-semibold rounded-lg w-full mt-24"
-          // onClick={() => handleRegister()}
+          onClick={() => setSelectedPortfolio(portfolio)}
         >
           View
       </Button>
@@ -43,12 +43,12 @@ const GridItem = ({ portfolio }: { portfolio: Portfolio }) => {
   )
 }
 
-const PortfolioGrid = ({ portfolios, setPortfolios }: { portfolios: Portfolio[], setPortfolios: React.Dispatch<React.SetStateAction<Portfolio[] | undefined>> }) => {
+const PortfolioGrid = ({ portfolios, setPortfolios, setSelectedPortfolio }: { portfolios: Portfolio[], setPortfolios: React.Dispatch<React.SetStateAction<Portfolio[] | undefined>>, setSelectedPortfolio: (portfolio: Portfolio) => void} ) => {
   return (
     <div className='space-y-10'>
       <Grid templateColumns='repeat(2, 1fr)' rowGap={8} columnGap={10} marginTop={8}>
         {portfolios?.map(portfolio => (
-          <GridItem key={portfolio.name} portfolio={portfolio}/>
+          <GridItem key={portfolio.name} portfolio={portfolio} setSelectedPortfolio={setSelectedPortfolio} />
         ))}
         <CreatePortfolioDrawer setPortfolios={setPortfolios}/>
       </Grid>

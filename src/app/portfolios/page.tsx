@@ -7,12 +7,15 @@ import Portfolio from '../models/portfolio'
 import Navbar from '@/components/Navbar'
 import Spinner from '@/components/Spinner'
 import PortfolioGrid from '@/components/portfolios/PortfolioGrid'
+import { useRouter } from 'next/navigation'
 
 const Portfolios = () => {
   const [session, setSession] = useState<Session>()
   const [loading, setLoading] = useState(true)
   const API_ROOT = process.env.NEXT_PUBLIC_API_URL
   const [portfolios, setPortfolios] = useState<Portfolio[] | undefined>([])
+  const [selectedPortfolio, setSelectedPortfolio] = useState<Portfolio>()
+  const router = useRouter() 
 
   useEffect(() => {
     const establishSession = async () => {
@@ -48,15 +51,31 @@ const Portfolios = () => {
     fetchPortfolios()
   }, [session?.user?.id, API_ROOT, setPortfolios])
 
+  const handleSelectPortfolio = (portfolio: Portfolio) => {
+    setSelectedPortfolio(portfolio)
+    router.push(`/portfolios?${portfolio.name}`)
+  }
+
   if (loading) return <Spinner size={100} color="#1D4ED8" thickness={5} />
 
   return (
     <div className="bg-gray-custom1 flex flex-row">
       <Navbar />
-      <div className="w-full px-14 py-12 max-h-screen overflow-y-scroll">
-        <h1 className="text-xl text-blue-custom1 capitalize font-semibold">{session?.user?.name}&apos;s Portfolios</h1>
-        <PortfolioGrid portfolios={portfolios || []} setPortfolios={setPortfolios} />
-      </div>
+      { selectedPortfolio 
+        ? (
+          <div> Selected {selectedPortfolio.name} baby</div>
+        )
+        : (
+          <div className="w-full px-14 py-12 max-h-screen overflow-y-scroll">
+            <h1 className="text-xl text-blue-custom1 capitalize font-semibold">{session?.user?.name}&apos;s Portfolios</h1>
+            <PortfolioGrid 
+              portfolios={portfolios || []} 
+              setPortfolios={setPortfolios} 
+              setSelectedPortfolio={handleSelectPortfolio} 
+            />
+          </div>
+        )
+      }
     </div>
   )
 }

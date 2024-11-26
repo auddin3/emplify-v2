@@ -95,7 +95,7 @@ const Register = () => {
                 handleChange={handleChange}
               />
             ) : (
-              <Field label={field} key={field} className="capitalize">
+              <Field label={field} key={field} required className="capitalize">
                 <Input
                   type={field === 'password' ? 'password' : 'text'}
                   placeholder={`Enter your ${field}`}

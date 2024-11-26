@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongodb'
 
-interface KSB {
+export interface KSB {
     title: string
-    subTitle: string
+    subtitle: string
     description: string
     category: string[]
 }

@@ -263,9 +263,9 @@ const CreatePortfolioDrawer = () => {
         </DrawerBody>
         <DrawerFooter>
           <Button
-            size="sm"
+            size="xs"
             onClick={handleSubmit}
-            className='mx-auto bg-blue-custom1 text-white-custom2 font-semibold rounded-xl px-5'
+            className='mx-auto w-32 bg-blue-custom1 text-white-custom2 font-semibold rounded-lg px-5'
           >
             Save
           </Button>

@@ -1,5 +1,6 @@
 'use server'
 
+import { auth } from '@/auth'
 import { signIn, signOut } from '@/auth'
 import User from '../models/user'
 
@@ -22,4 +23,9 @@ export const loginWithCredentials = async(formData: User) => {
   } catch(e) {
     throw new Error(e as string)
   }
+}
+
+export const getSession = async () => {
+  const session = await auth()
+  if (session?.user) return session
 }

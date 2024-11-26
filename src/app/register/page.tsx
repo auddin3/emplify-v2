@@ -63,7 +63,7 @@ const Register = () => {
     <div className='min-h-screen bg-white-custom2'>
       <Navbar />
       {!schools
-        ? <Spinner size="xl" color="000000" />
+        ? <Spinner size="xl" color="black" />
         :
         (
           <>

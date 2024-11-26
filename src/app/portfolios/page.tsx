@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 
-const Dashboard = () => {
+const Portfolios = () => {
   return (
     <div>
       <Navbar />
@@ -11,4 +11,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Portfolios

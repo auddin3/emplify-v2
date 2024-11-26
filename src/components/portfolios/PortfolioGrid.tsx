@@ -7,7 +7,7 @@ const PortfolioGrid = () => {
 
     <Grid templateColumns='repeat(2, 1fr)' rowGap={8} columnGap={10} marginTop={8}>
       <div
-        className='flex justify-center items-center cursor-pointer h-60 bg-blue-custom4'
+        className='flex justify-center items-center cursor-pointer h-60 bg-blue-custom4 rounded-lg'
         // onClick={onOpen}
       >
         <IconButton

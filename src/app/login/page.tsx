@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 import User from '../models/user'
-import { login } from '../actions'
+import { login, loginWithCredentials } from '../actions'
 import { Field, Navbar } from '@/components/authentication'
 import { Button, Fieldset } from '@chakra-ui/react'
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
   const [userData, setUserData] = useState<User>({
@@ -13,12 +14,24 @@ const Login = () => {
   })
 
   const fields = ['email', 'password']
+  const router = useRouter()
 
   const handleChange = (key: string, val: string) => {
     setUserData(prev => ({
       ...prev,
       [key]: val,
     }))
+  }
+
+  const handleLogin = async() => {
+    try {
+      const response = await loginWithCredentials(userData)
+      if (!response.error) (
+        router.push('/dashboard')
+      )
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -50,7 +63,7 @@ const Login = () => {
           <Button
             size='lg'
             className="bg-blue-custom1 text-white-custom2 font-semibold w-full rounded-md mx-auto"
-            // onClick={() => handleRegister(userData)}
+            onClick={handleLogin}
           >
           Login
           </Button>

@@ -4,7 +4,7 @@ interface SpinnerProps {
   size?: number
   color?: string
   thickness?: number
-};
+}
 
 const Spinner = ({ size = 40, color = '#000', thickness = 4 }: SpinnerProps) => {
   return (

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPortfoliosByUser, createPortfolio } from '@/app/services/portfolios'
+import { ObjectId } from 'mongodb'
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,7 +18,10 @@ export async function GET(request: NextRequest) {
 }
 
 export const POST = async (request: NextRequest) => {
-  const portfolio = await request.json()
+  const { name, description, owner, specification, deadline } = await request.json()
+
+  const ownerId = new ObjectId(owner)
+  const portfolio = { name, description, owner: ownerId, specification, deadline }
 
   try {
     await createPortfolio(portfolio)

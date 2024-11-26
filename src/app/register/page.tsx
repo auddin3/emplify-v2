@@ -46,16 +46,16 @@ const Register = () => {
           school,
         }),
       })
-      setLoading(false)
       if (res.status === 201) router.push('/login')
-
     } catch (e) {
       console.error(e)
+    } finally {
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    async function fetchPosts() {
+    async function fetchSchools() {
       try {
         const res = await fetch(`${API_ROOT}/api/schools`)
         const { schools } = await res.json()
@@ -67,7 +67,7 @@ const Register = () => {
       }
     }
 
-    fetchPosts()
+    fetchSchools()
   }, [API_ROOT])
 
   if (loading) return ( <Spinner size={100} color="#1D4ED8" thickness={5} /> )

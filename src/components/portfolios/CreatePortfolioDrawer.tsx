@@ -90,6 +90,7 @@ const dummyKSBs = [
 
 const CreatePortfolioDrawer = () => {
   const [session, setSession] = useState<Session>()
+  const API_ROOT = process.env.NEXT_PUBLIC_API_URL
   const [loading, setLoading] = useState(true)
   const [KSBs, setKSBs] = useState<KSB[]>(dummyKSBs)
   const [formData, setFormData] = useState<{
@@ -122,8 +123,26 @@ const CreatePortfolioDrawer = () => {
     }))
   }
 
-  const handleSubmit = () => {
-    console.log(formData)
+  const handleSubmit = async() => {
+    try {
+      const { name, description, owner, specification, deadline } = formData
+      setLoading(true)
+      const res = await fetch(`${API_ROOT}/api/portfolios`, {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({
+          name,
+          description,
+          owner,
+          specification,
+          deadline,
+        }),
+      })
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {

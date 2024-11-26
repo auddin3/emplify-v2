@@ -5,7 +5,7 @@ import { signIn, signOut } from '@/auth'
 import User from '../models/user'
 
 export const login = async(action: string) => {
-  await signIn(action, { redirectTo: '/dashboard'})
+  await signIn(action, { redirectTo: '/portfolios'})
 }
 
 export const logout = async() => {

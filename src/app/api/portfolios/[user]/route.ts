@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPortfoliosByUser } from '@/app/services/portfolios'
 
-export async function GET(request: NextRequest, { params }: { params: { user: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ user: string }> }) {
   try {
     const { user } = await params
     if (!user) {

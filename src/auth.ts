@@ -78,5 +78,5 @@ export const {
       return session
     },
   },
-
+  trustHost: true, // Trust all hosts (not recommended for production)
 })

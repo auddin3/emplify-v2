@@ -15,6 +15,8 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Copy the .env.local file into the container (before building the app)
+COPY .env.local .env.local
 
 # Rebuild the source code only when needed
 FROM base AS builder

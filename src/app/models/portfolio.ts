@@ -8,7 +8,7 @@ export interface KSB {
 }
 
 interface Portfolio {
-    id?: ObjectId
+    _id?: ObjectId
     name: string
     owner: ObjectId
     specification: KSB[]

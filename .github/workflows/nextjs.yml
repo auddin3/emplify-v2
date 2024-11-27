@@ -29,6 +29,9 @@ jobs:
           echo "File structure:"
           ls -R
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Run lint checks
         run: npm run lint
 
@@ -36,7 +39,7 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           MONGODB_DB: ${{ secrets.MONGODB_DB }}
-        run: npm test -- --config jest.config.ts
+        run: npm test
 
       - name: Build the application
         env:

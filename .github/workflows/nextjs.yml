@@ -24,11 +24,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify case sensitivity in file names
+        run: ls -l src/components/home
+
+      - name: Clear Next.js cache
+        run: rm -rf .next
+
+      - name: Clear Jest cache
+        run: npx jest --clearCache
+
       - name: Run lint checks
         run: npm run lint
 
-      # - name: Run tests
-      #   run: npm test -- --config jest.config.ts
+      - name: Run tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB: ${{ secrets.MONGODB_DB }}
+        run: npm test -- --config jest.config.ts
 
       - name: Build the application
         env:

@@ -28,7 +28,7 @@ const cardDeck = [
 const Accordion = () => (
   <Box bg="gray.50" px={{ base: 8, md: 16 }} py={{ base: 12, md: 20 }} h="full">
     <Box textAlign="center" mb={16}>
-      <Box as="h1" fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" color="gray.800">
+      <Box fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" color="gray.800">
         What&apos;s in Emplify?
       </Box>
       <Box fontSize={{ base: 'md', md: 'lg' }} color="gray.600" mt={3}>

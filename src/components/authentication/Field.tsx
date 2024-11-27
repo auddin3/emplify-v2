@@ -53,7 +53,7 @@ interface FieldProps {
   handleChange: (key: string, val: string) => void
 }
 
-const Field = ({ fieldName, formData, options, handleChange }: FieldProps) => {
+const CustomField = ({ fieldName, formData, options, handleChange }: FieldProps) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -90,4 +90,4 @@ const Field = ({ fieldName, formData, options, handleChange }: FieldProps) => {
   )
 }
 
-export default Field
+export default CustomField

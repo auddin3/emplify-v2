@@ -13,6 +13,7 @@ const config: Config = {
           custom1: '#00338D',
           custom2: '#005EB8',
           custom3: '#0071b6',
+          custom4: '#4B75FF33',
         },
         purple: {
           custom1: '#483698',

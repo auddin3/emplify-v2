@@ -10,7 +10,7 @@ interface Movie {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(request: NextRequest) {
   try {
-    const dbName = process.env.MONGODB_DB || 'sample_mflix'
+    const dbName = 'sample_mflix'
     const db = await getDatabase(dbName)
 
     const movies = await db

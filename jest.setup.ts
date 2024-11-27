@@ -1,9 +1,10 @@
 // jest.setup.js
 import '@testing-library/jest-dom'
+import copy from 'fast-copy';
 
 // Polyfill `structuredClone` if needed
 if (typeof global.structuredClone !== 'function') {
-  global.structuredClone = obj => JSON.parse(JSON.stringify(obj))
+  global.structuredClone = copy;
 }
 
 // Mock `useRouter` globally if required by multiple tests

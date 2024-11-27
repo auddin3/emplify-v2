@@ -9,5 +9,4 @@ export const fetchSchools = async() => {
   } catch {
     throw new Error()
   }
-
 }

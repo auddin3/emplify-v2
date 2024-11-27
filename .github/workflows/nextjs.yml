@@ -27,8 +27,8 @@ jobs:
       - name: Run lint checks
         run: npm run lint
 
-      # - name: Run tests
-      #   run: npm test -- --config jest.config.ts
+      - name: Run tests
+        run: npm test -- --config jest.config.ts
 
       - name: Build the application
         env:

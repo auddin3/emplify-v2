@@ -23,7 +23,7 @@ const KSBCard = ({ portfolio, ksb, entry, setPortfolioEntries }: KSBCardProps) =
 
     return (
         <div className='border bg-white-custom2 w-full rounded-xl p-6 flex flex-row items-center justify-between my-4'>
-            <div className='flex flex-row space-x-6'>
+            <div className='flex flex-row space-x-6 items-center'>
                 <Avatar variant="solid" name={ksb.title.split('').join(' ')} colorPalette={pickPalette(ksb.subtitle)}/>
                 <div>
                     <div className='font-semibold'>{ksb.subtitle}</div>

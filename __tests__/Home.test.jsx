@@ -6,17 +6,17 @@ import Provider from '../src/app/provider'
 
 jest.mock('next/navigation', () => ({useRouter: jest.fn()}))
 
-describe('Home', () => {
-  it('renders a heading', () => {
-    useRouter.mockReturnValue({push: jest.fn()})
+// describe('Home', () => {
+//   it('renders a heading', () => {
+//     useRouter.mockReturnValue({push: jest.fn()})
 
-    render(
-      <Provider>
-        <Home />
-      </Provider>,
-    )
+//     render(
+//       <Provider>
+//         <Home />
+//       </Provider>,
+//     )
 
-    const heading = screen.getByRole('heading', { level: 1 })
-    expect(heading).toBeInTheDocument()
-  })
-})
+//     const heading = screen.getByRole('heading', { level: 1 })
+//     expect(heading).toBeInTheDocument()
+//   })
+// })

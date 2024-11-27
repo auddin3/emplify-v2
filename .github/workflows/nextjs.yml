@@ -29,12 +29,6 @@ jobs:
           echo "File structure:"
           ls -R
 
-      - name: Clear Next.js cache
-        run: rm -rf .next
-
-      - name: Clear Jest cache
-        run: npx jest --clearCache
-
       - name: Run lint checks
         run: npm run lint
 

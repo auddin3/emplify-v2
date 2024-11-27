@@ -12,7 +12,7 @@ const Home = () => {
   const clipboard = useClipboard({ value })
 
   return (
-    <div className="">
+    <div>
       <Navbar />
       <div className='bg-gradient-to-r from-blue-custom2 to-purple-custom4 space-y-20 px-28 py-24 text-center'>
         <h1 className='text-6xl text-white-custom1 font-bold'>

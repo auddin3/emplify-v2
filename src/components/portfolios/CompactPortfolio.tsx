@@ -2,11 +2,18 @@ import React, {useState, useEffect} from 'react'
 import Portfolio, { KSB } from "@/app/models/portfolio"
 import { Avatar } from '../ui/avatar'
 import Spinner from '../Spinner'
-import CreateEntryDrawer from './CreateEntryDrawer'
+import PortfolioEntryDrawer from './PortfolioEntryDrawer'
 import { dummyKSBs } from '@/app/util'
 import PortfolioEntry from '@/app/models/portfolioEntry'
 
-const KSBCard = ({ portfolio, ksb }: { portfolio: Portfolio, ksb: KSB }) => {
+interface KSBCardProps {
+    portfolio: Portfolio
+    ksb: KSB
+    entry?: PortfolioEntry
+    setPortfolioEntries: React.Dispatch<React.SetStateAction<PortfolioEntry[] | undefined>>
+}
+
+const KSBCard = ({ portfolio, ksb, entry, setPortfolioEntries }: KSBCardProps) => {
     const colorPalette = ["red", "blue", "green", "yellow", "purple", "orange"]
 
     const pickPalette = (name: string) => {
@@ -23,7 +30,7 @@ const KSBCard = ({ portfolio, ksb }: { portfolio: Portfolio, ksb: KSB }) => {
                     <div>{ksb.description.slice(0, 200)}...</div>
                 </div>
             </div>
-            <CreateEntryDrawer portfolio={portfolio} ksb={ksb}/>
+            <PortfolioEntryDrawer portfolio={portfolio} ksb={ksb} entry={entry} setPortfolioEntries={setPortfolioEntries}/>
         </div>
     )
 }
@@ -98,18 +105,33 @@ const CompactPortfolio = ({ selectedPortfolio }: CompactPortfolioProps) => {
             <div className="text-2xl font-semibold">{selectedPortfolio?.name}</div>
             <div className="text-lg text-black-custom1 py-4">{selectedPortfolio?.description}</div>
             <div className="flex flex-col space-y-3">
-                <div className='my-10'>
-                    <div className="font-semibold text-gray-custom2 mb-4">Incomplete</div>
-                    {incompleteKSBs.map((ksb) => (
-                        <KSBCard portfolio={selectedPortfolio} ksb={ksb} key={ksb.title}/>
-                    ))}
-                </div>
-                <div className='my-10'>
-                    <div className="font-semibold text-gray-custom2 mb-4">Achieved</div>
-                    {achievedKSBs.map((ksb) => (
-                        <KSBCard portfolio={selectedPortfolio} ksb={ksb} key={ksb.title}/>
-                    ))}
-                </div>
+                {incompleteKSBs?.length > 0 && (
+                    <div className='my-10'>
+                        <div className="font-semibold text-gray-custom2 mb-4">Incomplete</div>
+                        {incompleteKSBs.map((ksb) => (
+                            <KSBCard 
+                                portfolio={selectedPortfolio} 
+                                ksb={ksb} 
+                                key={ksb.title} 
+                                setPortfolioEntries={setPortfolioEntries}
+                            />
+                        ))}
+                    </div>
+                )}
+                {achievedKSBs?.length > 0 && (
+                    <div className='my-10'>
+                        <div className="font-semibold text-gray-custom2 mb-4">Achieved</div>
+                        {achievedKSBs.map((ksb) => (
+                            <KSBCard 
+                                portfolio={selectedPortfolio} 
+                                ksb={ksb} 
+                                key={ksb.title} 
+                                entry={portfolioEntries?.find(entry => entry.KSB.title === ksb.title)} 
+                                setPortfolioEntries={setPortfolioEntries}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     )

@@ -62,21 +62,23 @@ const Portfolios = () => {
   return (
     <div className="bg-gray-custom1 flex flex-row">
       <Navbar />
-      { selectedPortfolio 
-        ? (
-          <CompactPortfolio selectedPortfolio={selectedPortfolio}/>
-        )
-        : (
-          <div className="w-full px-14 py-12 max-h-screen overflow-y-scroll">
-            <h1 className="text-xl text-blue-custom1 capitalize font-semibold">{session?.user?.name}&apos;s Portfolios</h1>
-            <PortfolioGrid 
-              portfolios={portfolios || []} 
-              setPortfolios={setPortfolios} 
-              setSelectedPortfolio={handleSelectPortfolio} 
-            />
-          </div>
-        )
-      }
+      <div className='h-screen w-full overflow-auto'>
+        { selectedPortfolio 
+          ? (
+            <CompactPortfolio selectedPortfolio={selectedPortfolio}/>
+          )
+          : (
+            <div className="w-full px-14 py-12 max-h-screen overflow-y-scroll">
+              <h1 className="text-xl text-blue-custom1 capitalize font-semibold">{session?.user?.name}&apos;s Portfolios</h1>
+              <PortfolioGrid 
+                portfolios={portfolios || []} 
+                setPortfolios={setPortfolios} 
+                setSelectedPortfolio={handleSelectPortfolio} 
+              />
+            </div>
+          )
+        }
+      </div>
     </div>
   )
 }

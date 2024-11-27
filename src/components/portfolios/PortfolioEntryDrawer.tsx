@@ -8,12 +8,20 @@ import { toaster } from '@/components/ui/toaster'
 import { ArrowRightCircleIcon } from '@heroicons/react/24/solid'
 import Portfolio from '@/app/models/portfolio'
 import { KSB } from '@/app/models/portfolio'
+import PortfolioEntry from '@/app/models/portfolioEntry'
 
-const CreateEntryDrawer = ({ portfolio, ksb  }: { portfolio: Portfolio, ksb: KSB }) => {
+interface PortfolioEntryDrawerProps { 
+  portfolio: Portfolio
+  ksb: KSB
+  entry?: PortfolioEntry
+  setPortfolioEntries: React.Dispatch<React.SetStateAction<PortfolioEntry[] | undefined>> 
+}
+
+const PortfolioEntryDrawer = ({ portfolio, ksb, entry, setPortfolioEntries }: PortfolioEntryDrawerProps) => {
   const API_ROOT = process.env.NEXT_PUBLIC_API_URL
   const [formData, setFormData] = useState({
-    www: '',
-    ebi: '',
+    www: (entry?.www || ''),
+    ebi: (entry?.ebi || ''),
   })
 
   const handleChange = (key: string, val: string) => {
@@ -46,8 +54,7 @@ const CreateEntryDrawer = ({ portfolio, ksb  }: { portfolio: Portfolio, ksb: KSB
       }
 
       const { portfolioEntries } = await res.json()
-      console.log(portfolioEntries)
-    //   setPortfolios(portfolios)
+      setPortfolioEntries(portfolioEntries)
   
     } catch {
       toaster.create({
@@ -109,4 +116,4 @@ const CreateEntryDrawer = ({ portfolio, ksb  }: { portfolio: Portfolio, ksb: KSB
   )
 }
 
-export default CreateEntryDrawer
+export default PortfolioEntryDrawer

@@ -16,6 +16,7 @@ export const getPortfolioEntries = async(portfolioId: string) => {
 export const createPortfolioEntry = async(entry: PortfolioEntry) => {
   try {
     const db = await getDatabase(process.env.MONGODB_DB || 'emplify')
+    await db.collection<PortfolioEntry>('portfolioEntries').deleteOne({ portfolio: entry.portfolio, KSB: entry.KSB })
     await db.collection<PortfolioEntry>('portfolioEntries').insertOne(entry)
   } catch {
     throw new Error()

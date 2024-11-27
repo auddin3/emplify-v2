@@ -22,13 +22,13 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run lint checks
         run: npm run lint
 
       - name: Run tests
-        run: npm test
+        run: npm test -- --config jest.config.ts
 
       - name: Build the application
         env:

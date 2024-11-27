@@ -21,6 +21,14 @@ jobs:
         with:
           node-version: '18'
 
+      # Debugging step to inspect file structure
+      - name: Debug file structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "File structure:"
+          ls -R
+
       - name: Install dependencies
         run: npm ci
 
@@ -28,7 +36,10 @@ jobs:
         run: npm run lint
 
       - name: Run tests
-        run: npm test -- --config jest.config.ts
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB: ${{ secrets.MONGODB_DB }}
+        run: npm test
 
       - name: Build the application
         env:

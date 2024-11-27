@@ -11,16 +11,16 @@ jest.mock('next/router', () => ({
     query: {},
     asPath: '/',
   })),
-}));
+}))
 
 describe('Home', () => {
   it('renders a heading', () => {
     render(
       <ChakraProvider value={defaultSystem}>
         <Home />
-      </ChakraProvider>
-    );
+      </ChakraProvider>,
+    )
     const heading = screen.getByRole('heading', { level: 1 })
     expect(heading).toBeInTheDocument()
-  });
-});
+  })
+})

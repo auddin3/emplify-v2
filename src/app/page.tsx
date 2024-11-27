@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Accordion, Footer, Navbar } from '../components/home'
+import { Accordion, Footer, Navbar } from '../components/home/index'
 import { Button, useClipboard } from '@chakra-ui/react'
 import { CheckIcon, DocumentDuplicateIcon } from '@heroicons/react/24/solid'
 

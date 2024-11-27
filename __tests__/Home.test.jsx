@@ -1,22 +1,26 @@
-import '@testing-library/jest-dom'
+import React from 'react'
 import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import Home from '../src/app/page'
-import { useRouter } from 'next/navigation'
-import Provider from '../src/app/provider'
 
-jest.mock('next/navigation', () => ({useRouter: jest.fn()}))
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(() => ({
+    route: '/',
+    pathname: '/',
+    query: {},
+    asPath: '/',
+  })),
+}));
 
-// describe('Home', () => {
-//   it('renders a heading', () => {
-//     useRouter.mockReturnValue({push: jest.fn()})
-
-//     render(
-//       <Provider>
-//         <Home />
-//       </Provider>,
-//     )
-
-//     const heading = screen.getByRole('heading', { level: 1 })
-//     expect(heading).toBeInTheDocument()
-//   })
-// })
+describe('Home', () => {
+  it('renders a heading', () => {
+    render(
+      <ChakraProvider value={defaultSystem}>
+        <Home />
+      </ChakraProvider>
+    );
+    const heading = screen.getByRole('heading', { level: 1 })
+    expect(heading).toBeInTheDocument()
+  });
+});

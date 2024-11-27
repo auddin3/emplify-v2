@@ -16,7 +16,7 @@ const Portfolios = () => {
   const API_ROOT = process.env.NEXT_PUBLIC_API_URL
   const [portfolios, setPortfolios] = useState<Portfolio[] | undefined>([])
   const [selectedPortfolio, setSelectedPortfolio] = useState<Portfolio>()
-  const router = useRouter() 
+  const router = useRouter()
 
   useEffect(() => {
     const establishSession = async () => {
@@ -63,17 +63,17 @@ const Portfolios = () => {
     <div className="bg-gray-custom1 flex flex-row">
       <Navbar />
       <div className='h-screen w-full overflow-auto'>
-        { selectedPortfolio 
+        { selectedPortfolio
           ? (
             <CompactPortfolio selectedPortfolio={selectedPortfolio}/>
           )
           : (
             <div className="w-full px-14 py-12 max-h-screen overflow-y-scroll">
               <h1 className="text-xl text-blue-custom1 capitalize font-semibold">{session?.user?.name}&apos;s Portfolios</h1>
-              <PortfolioGrid 
-                portfolios={portfolios || []} 
-                setPortfolios={setPortfolios} 
-                setSelectedPortfolio={handleSelectPortfolio} 
+              <PortfolioGrid
+                portfolios={portfolios || []}
+                setPortfolios={setPortfolios}
+                setSelectedPortfolio={handleSelectPortfolio}
               />
             </div>
           )

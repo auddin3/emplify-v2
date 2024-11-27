@@ -64,7 +64,7 @@ const CreatePortfolioDrawer = ({ setPortfolios }: { setPortfolios: React.Dispatc
           deadline,
         }),
       })
-  
+
       if (res.status === 200) {
         toaster.create({
           title: 'Operation successful',
@@ -74,7 +74,7 @@ const CreatePortfolioDrawer = ({ setPortfolios }: { setPortfolios: React.Dispatc
 
       const { portfolios } = await res.json()
       setPortfolios(portfolios)
-  
+
     } catch {
       toaster.create({
         title: 'Operation failed',
@@ -83,7 +83,7 @@ const CreatePortfolioDrawer = ({ setPortfolios }: { setPortfolios: React.Dispatc
     } finally {
       setLoading(false)
     }
-  }  
+  }
 
   useEffect(() => {
     const establishSession = async () => {

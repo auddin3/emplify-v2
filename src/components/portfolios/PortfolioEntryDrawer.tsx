@@ -10,11 +10,11 @@ import Portfolio from '@/app/models/portfolio'
 import { KSB } from '@/app/models/portfolio'
 import PortfolioEntry from '@/app/models/portfolioEntry'
 
-interface PortfolioEntryDrawerProps { 
+interface PortfolioEntryDrawerProps {
   portfolio: Portfolio
   ksb: KSB
   entry?: PortfolioEntry
-  setPortfolioEntries: React.Dispatch<React.SetStateAction<PortfolioEntry[] | undefined>> 
+  setPortfolioEntries: React.Dispatch<React.SetStateAction<PortfolioEntry[] | undefined>>
 }
 
 const PortfolioEntryDrawer = ({ portfolio, ksb, entry, setPortfolioEntries }: PortfolioEntryDrawerProps) => {
@@ -34,7 +34,7 @@ const PortfolioEntryDrawer = ({ portfolio, ksb, entry, setPortfolioEntries }: Po
   const handleSubmit = async () => {
     try {
       const { www, ebi } = formData
-    
+
       const res = await fetch(`${API_ROOT}/api/portfolioEntries`, {
         method: 'POST',
         headers: {'content-type': 'application/json'},
@@ -42,10 +42,10 @@ const PortfolioEntryDrawer = ({ portfolio, ksb, entry, setPortfolioEntries }: Po
           portfolio,
           KSB: ksb,
           www,
-          ebi
+          ebi,
         }),
       })
-  
+
       if (res.status === 200) {
         toaster.create({
           title: 'Operation successful',
@@ -55,22 +55,22 @@ const PortfolioEntryDrawer = ({ portfolio, ksb, entry, setPortfolioEntries }: Po
 
       const { portfolioEntries } = await res.json()
       setPortfolioEntries(portfolioEntries)
-  
+
     } catch {
       toaster.create({
         title: 'Operation failed',
         type: 'error',
       })
     }
-  }  
+  }
 
   return (
     <DrawerRoot size='sm'>
       <DrawerBackdrop />
       <DrawerTrigger asChild>
-           <IconButton aria-label="See entry" rounded="full">
-                <ArrowRightCircleIcon className='text-blue-custom3 h-12 w-12 justify-end'/>
-            </IconButton>
+        <IconButton aria-label="See entry" rounded="full">
+          <ArrowRightCircleIcon className='text-blue-custom3 h-12 w-12 justify-end'/>
+        </IconButton>
       </DrawerTrigger>
       <DrawerContent rounded="md">
         <DrawerHeader>
